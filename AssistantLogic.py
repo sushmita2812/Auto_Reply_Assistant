@@ -1,15 +1,11 @@
 import os
+import streamlit as st
 from openai import OpenAI
 
 # Try to get API key from environment variable
-api_key = os.getenv("OPENAI_API_KEY")
+# Get API key from Streamlit secrets
+api_key = st.secrets["OPENAI_API_KEY"]
 
-if not api_key:
-    raise ValueError(
-        "❌ OPENAI_API_KEY is not set. Please set it as an environment variable:\n"
-        "   PowerShell: setx OPENAI_API_KEY \"your_api_key_here\"\n"
-        "   Then restart VS Code and run again."
-    )
 
 # Initialize client
 client = OpenAI(api_key=api_key)
